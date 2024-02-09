@@ -1,6 +1,4 @@
 import torch, os
-import yaml
-from IPython import embed
 
 
 def get_config(args):
@@ -30,9 +28,11 @@ def get_config(args):
 
     if args.data_mode == 'retina':
         configuration['DATA_ROOT'] = './Data/ms1m-retinaface-t1/'
+    elif args.data_mode == 'icartoonface':
+        configuration['DATA_ROOT'] = '/root/face-rnd/dat/personai_icartoonface_rectrain/icartoonface_rectrain/icartoonface_rectrain_split'
     else:
         raise Exception(args.data_mode)
-    configuration['EVAL_PATH'] = './eval/'
+    configuration['EVAL_PATH'] = '/root/face-rnd/dat/personai_icartoonface_rectrain/icartoonface_rectrain/icartoonface_rectrain_split'
     assert args.net in [ 'VIT','VITs']
     configuration['BACKBONE_NAME'] = args.net
     assert args.head in ['Softmax', 'ArcFace', 'CosFace', 'SFaceLoss']
